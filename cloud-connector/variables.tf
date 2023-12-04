@@ -43,14 +43,8 @@ variable "ec2_name" {
   default = "tf-sapcc-vm"
 }
 
-# https://aws.amazon.com/marketplace/pp/prodview-wn2xje27ui45o
-## us-east-1
-variable "ec2_ami_id" {
-  type    = string
-  default = "ami-066a409ad14c16a1f"
-}
-
-variable "scc-version" {
-  type = string
-  default = "2.16.0"
+locals {
+  vars = {
+    scc-version = "2.16.0"
+  }
 }
