@@ -4,7 +4,7 @@ Collection of Terraform scripts to automate the deployment of SAP Systems and co
 > [!WARNING]
 > The Installation of the components runs in the background and take some time. Either check the logfile `/var/log/cloud-init-output.log` or the status of the service itself.
 
-At the moment the following SAP Systems are supported:
+At the moment the following SAP Components are supported:
 - SAPRouter
 - SAP Cloud Connector
 
