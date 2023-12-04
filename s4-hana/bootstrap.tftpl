@@ -11,3 +11,14 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get -qy install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# Login Docker Hub
+echo "${docker_api_key}" | docker login -u "${docker_user}" --password-stdin
+# Setup SAP S/4 HANA 1909 Trial
+sudo docker pull sapse/abap-platform-trial:1909
+echo "${private_ip} vhcalnplci vhcalnplci.dummy.nodomain" | sudo tee -a /etc/hosts
+echo << EOF | sudo tee -a /etc/sysctl.d/999-abaptrial.conf
+vm.max_map_count=2147483647
+fs.aio-max-nr=18446744073709551615
+fs.file-max=20000000
+EOF
+sudo sysctl -p /etc/sysctl.d/999-abaptrial.conf

@@ -43,8 +43,10 @@ variable "ec2_name" {
   default = "tf-s4hana-vm"
 }
 
-locals {
-  vars = {
-    routtab-file-url = "https://raw.githubusercontent.com/randomstr1ng/static-files/master/saprouter_linux/saprouttab.example"
-  }
+variable "docker_user" {
+  type    = string
+}
+
+variable "docker_api_key" {
+  type    = string
 }
