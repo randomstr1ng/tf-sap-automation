@@ -1,7 +1,7 @@
 name: s4-hana-trial-1909
 services:
     abap-platform-trial:
-        stop_grace_period: "3600"
+        stop_grace_period: 3600s
         stdin_open: true
         container_name: a4h
         hostname: vhcala4hci
@@ -11,9 +11,10 @@ services:
             - kernel.shmmni=32768
             - kernel.shmall=5242880
             - kernel.msgmni=1024
-            - kernel.sem="1250 256000 100 8192"
+            - kernel.sem=1250 256000 100 8192
         ulimits:
             nofile:
                 soft: 1048576
                 hard: 1048576
         image: sapse/abap-platform-trial:1909
+        command: -agree-to-sap-license -skip-limits-check

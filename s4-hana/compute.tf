@@ -20,7 +20,7 @@ resource "aws_instance" "ec2_instance" {
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [aws_security_group.security_group.id]
   subnet_id              = aws_subnet.subnet.id
-  user_data              = base64encode(templatefile("${path.module}/bootstrap.tftpl", {docker_user = var.docker_user, docker_api_key = var.docker_api_key, private_ip = aws_instance.ec2_instance.private_ip})) 
+  user_data              = base64encode(templatefile("${path.module}/bootstrap.tftpl", {docker_user = var.docker_user, docker_api_key = var.docker_api_key})) 
 
   tags = {
     Name = var.ec2_name
