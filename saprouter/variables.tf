@@ -43,13 +43,6 @@ variable "ec2_name" {
   default = "tf-saprouter-vm"
 }
 
-# https://aws.amazon.com/marketplace/pp/prodview-wn2xje27ui45o
-## us-east-1
-variable "ec2_ami_id" {
-  type    = string
-  default = "ami-066a409ad14c16a1f"
-}
-
 variable "routtab-file-url" {
   type    = string
   default = "https://raw.githubusercontent.com/randomstr1ng/static-files/master/saprouter_linux/saprouttab.example"
