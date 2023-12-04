@@ -45,6 +45,6 @@ variable "ec2_name" {
 
 locals {
   vars = {
-    scc-version = "2.16.0"
+    scc-version = "2.16.1"
   }
 }
