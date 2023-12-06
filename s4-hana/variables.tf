@@ -42,11 +42,3 @@ variable "ec2_name" {
   type    = string
   default = "tf-s4hana-vm"
 }
-
-variable "docker_user" {
-  type    = string
-}
-
-variable "docker_api_key" {
-  type    = string
-}
