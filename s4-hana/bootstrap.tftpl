@@ -1,7 +1,7 @@
 #!/bin/bash
 # Install Docker & Docker Compose
 sudo apt-get update
-sudo apt-get -qy install ca-certificates curl gnupg
+sudo apt-get -qy install ca-certificates curl gnupg python3-pip
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -22,5 +22,8 @@ fs.aio-max-nr=18446744073709551615
 fs.file-max=20000000
 EOF
 sudo sysctl -p /etc/sysctl.d/10-abaptrial.conf
-sudo mkdir -p /opt/s4-hana-trial/ && wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/s4-hana/config_files/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
+sudo mkdir -p /opt/s4-hana-trial/ && wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/s4-hana/utilities/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
 sudo docker compose -f /opt/s4-hana-trial/docker-compose.yaml up -d
+# transfer license update script
+pip3 install argparse
+wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/s4-hana/utilities/license-sap.py -O /opt/s4-hana-trial/license-sap.py && chmod +x /opt/s4-hana-trial/license-sap.py
