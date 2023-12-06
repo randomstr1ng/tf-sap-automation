@@ -7,6 +7,12 @@ Collection of Terraform scripts to automate the deployment of SAP Systems and co
 At the moment the following SAP Components are supported:
 - SAPRouter
 - SAP Cloud Connector
+- SAP S/4 HANA 1909
 
 At the moment the following Cloud Providers are supported:
 - AWS
+
+
+
+For more information on how to deploy and use the systems, have a look at the [documentation](./docs/README.md)
+
