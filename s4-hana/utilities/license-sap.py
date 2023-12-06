@@ -35,7 +35,7 @@ def write_keyfile(name, license):
         f = open(name, "w")
         f.write(license)
         f.close()
-        print(f"[+] Licensekey writte to file: {name}")
+        print(f"[+] Licensekey written to file: {name}")
 
 def main():
         options = parse_options()
