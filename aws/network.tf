@@ -49,3 +49,7 @@ resource "aws_route_table_association" "route_table_association" {
   subnet_id      = aws_subnet.subnet.id
   route_table_id = aws_route_table.route_table.id
 }
+
+resource "aws_eip" "saprouter_eip" {
+  instance = module.saprouter.saprouter_instance_id
+}

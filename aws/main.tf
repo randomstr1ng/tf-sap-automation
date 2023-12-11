@@ -18,5 +18,4 @@ module "saprouter" {
   vpc-id              = aws_vpc.vpc.id
   keypair-id          = aws_key_pair.key_pair.id
   subnet-id           = aws_subnet.subnet.id
-  enable_public_ip    = true
 }

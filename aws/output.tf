@@ -6,7 +6,7 @@ resource "local_file" "ssh_key" {
 
 output "saprouter_pulic_ip" {
   description = "SAPRouter Instance Public IP"
-  value = module.saprouter.public_ip 
+  value = aws_eip.saprouter_eip.public_ip
 }
 
 output "saprouter_private_ip" {

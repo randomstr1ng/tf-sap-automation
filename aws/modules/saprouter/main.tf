@@ -50,11 +50,6 @@ data "aws_ami" "opensuse-leap" {
   owners = ["679593333241"]
 }
 
-resource "aws_eip" "eip" {
-  count = var.enable_public_ip ? 1 : 0
-  instance = aws_instance.ec2_instance.id
-}
-
 resource "aws_instance" "ec2_instance" {
   # Recommended: https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/sizing-for-master-instance
   instance_type          = "t2.micro"
