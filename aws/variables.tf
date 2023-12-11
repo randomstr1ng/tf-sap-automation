@@ -68,6 +68,15 @@ variable "cloud-connector-version" {
 
 variable "jvm-version" {
   type    = string
-  default = "	8.1.096"
-  
+  default = "	8.1.096" 
+}
+
+# S4/HANA Module variables
+variable "s4_hana_security_group_name" {
+  type    = string
+  default = "tf-s4-hana-sg"
+}
+variable "s4_hana_ec2_name" {
+  type    = string
+  default = "tf-s4-hana-vm"
 }

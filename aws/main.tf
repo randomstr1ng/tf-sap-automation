@@ -39,3 +39,17 @@ module "sapcloudconnector" {
 resource "aws_eip" "sapcloudconnector_eip" {
   instance = module.sapcloudconnector.sapcloudconnector_instance_id
 }
+
+# Create SAP S4/HANA 1909 ABAP Platform Trial
+module "sap-s4hana" {
+  source = "./modules/s4-hana"
+
+  security_group_name = var.s4_hana_security_group_name
+  ec2_name            = var.s4_hana_ec2_name
+  vpc-id              = aws_vpc.vpc.id
+  keypair-id          = aws_key_pair.key_pair.id
+  subnet-id           = aws_subnet.subnet.id
+}
+resource "aws_eip" "sap-s4hana_eip" {
+  instance = module.sap-s4hana.sapcloudconnector_instance_id
+}

@@ -136,9 +136,9 @@ resource "aws_instance" "ec2_instance" {
 # min Requirements: 4vCPU, 16GB RAM, 150GB Disk
   instance_type          = "t3.2xlarge"
   ami                    = data.aws_ami.ubuntu.id
-  key_name               = aws_key_pair.key_pair.id
+  key_name               = var.keypair-id
   vpc_security_group_ids = [aws_security_group.security_group.id]
-  subnet_id              = aws_subnet.subnet.id
+  subnet_id              = var.subnet-id
   user_data              = base64encode(templatefile("${path.module}/bootstrap.tftpl", {})) 
 
   tags = {
