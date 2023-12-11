@@ -42,6 +42,11 @@ data "aws_ami" "opensuse-leap" {
     values = ["hvm"]
   }
 
+  filter {
+    name  = "architecture"
+    values = ["x86_64"]
+  }
+
   owners = ["679593333241"]
 }
 
