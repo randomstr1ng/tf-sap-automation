@@ -33,13 +33,13 @@ variable "subnet_name" {
   default = "tf-saprouter-subnet"
 }
 
-# Module variables
-variable "security_group_name" {
+# SAPRouter Module variables
+variable "srt-security_group_name" {
   type    = string
   default = "tf-saprouter-sg"
 }
 
-variable "ec2_name" {
+variable "saprouter_ec2_name" {
   type    = string
   default = "tf-saprouter-vm"
 }
@@ -47,4 +47,27 @@ variable "ec2_name" {
 variable "routtab-file-url" {
   type    = string
   default = "https://raw.githubusercontent.com/randomstr1ng/static-files/master/saprouter_linux/saprouttab.example"  
+}
+
+# SAPCloudConnector Module variables
+variable "scc-security_group_name" {
+  type    = string
+  default = "tf-sapcloudconnector-sg"
+}
+
+variable "sapcloudconnector_ec2_name" {
+  type    = string
+  default = "tf-sapclouconnector-vm"
+}
+
+## Version information can be found here: https://tools.hana.ondemand.com/#cloud
+variable "cloud-connector-version" {
+  type    = string
+  default = "2.16.1"
+}
+
+variable "jvm-version" {
+  type    = string
+  default = "	8.1.096"
+  
 }

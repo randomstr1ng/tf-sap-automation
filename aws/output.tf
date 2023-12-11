@@ -13,3 +13,13 @@ output "saprouter_private_ip" {
   description = "SAPRouter Instance Private IP"
   value = module.saprouter.private_ip
 }
+
+output "sapcloudconnector_pulic_ip" {
+  description = "SAP Cloud Connector Instance Public IP"
+  value = aws_eip.sapcloudconnector_eip.public_ip
+}
+
+output "sapcloudconnector_private_ip" {
+  description = "SAP Cloud Connector Instance Private IP"
+  value = module.sapcloudconnector.private_ip
+}
