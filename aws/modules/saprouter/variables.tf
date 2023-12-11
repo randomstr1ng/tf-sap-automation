@@ -24,3 +24,8 @@ variable "keypair-id" {
 variable "subnet-id" {
   type = string
 }
+
+variable "enable_public_ip" {
+  type    = bool
+  default = true
+}
