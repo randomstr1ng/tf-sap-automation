@@ -43,8 +43,7 @@ variable "ec2_name" {
   default = "tf-saprouter-vm"
 }
 
-locals {
-  vars = {
-    routtab-file-url = "https://raw.githubusercontent.com/randomstr1ng/static-files/master/saprouter_linux/saprouttab.example"
-  }
+variable "routtab-file-url" {
+  type    = string
+  default = "https://raw.githubusercontent.com/randomstr1ng/static-files/master/saprouter_linux/saprouttab.example"  
 }
