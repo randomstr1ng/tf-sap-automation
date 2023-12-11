@@ -23,19 +23,20 @@ variable "subnet_cidr" {
   default = "10.99.99.0/28"
 }
 
+variable "igw_name" {
+  type    = string
+  default = "tf-saprouter-igw"
+}
+
 variable "subnet_name" {
   type    = string
   default = "tf-saprouter-subnet"
 }
 
+# Module variables
 variable "security_group_name" {
   type    = string
   default = "tf-saprouter-sg"
-}
-
-variable "igw_name" {
-  type    = string
-  default = "tf-saprouter-igw"
 }
 
 variable "ec2_name" {
