@@ -23,37 +23,6 @@ resource "aws_subnet" "subnet" {
   }
 }
 
-resource "aws_security_group" "security_group" {
-  name        = var.security_group_name
-  description = var.security_group_name
-  vpc_id      = aws_vpc.vpc.id
-
-  ingress {
-    from_port   = 22
-    protocol    = "tcp"
-    to_port     = 22
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 8443
-    protocol    = "tcp"
-    to_port     = 8443
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
@@ -79,7 +48,4 @@ resource "aws_route" "default_route" {
 resource "aws_route_table_association" "route_table_association" {
   subnet_id      = aws_subnet.subnet.id
   route_table_id = aws_route_table.route_table.id
-}
-resource "aws_eip" "eip" {
-  instance = aws_instance.ec2_instance.id
 }

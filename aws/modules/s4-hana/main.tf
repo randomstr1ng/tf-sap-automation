@@ -1,32 +1,7 @@
-resource "aws_vpc" "vpc" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-  instance_tenancy     = "default"
-
-  tags = {
-    Name = var.vpc_name
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_subnet" "subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.subnet_cidr
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = var.subnet_name
-  }
-}
-
 resource "aws_security_group" "security_group" {
   name        = var.security_group_name
   description = var.security_group_name
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc-id
 
   ingress {
     from_port   = 22
@@ -136,32 +111,41 @@ resource "aws_security_group" "security_group" {
   }
 }
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name  = "architecture"
+    values = ["x86_64"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "aws_instance" "ec2_instance" {
+# min Requirements: 4vCPU, 16GB RAM, 150GB Disk
+  instance_type          = "t3.2xlarge"
+  ami                    = data.aws_ami.ubuntu.id
+  key_name               = var.keypair-id
+  vpc_security_group_ids = [aws_security_group.security_group.id]
+  subnet_id              = var.subnet-id
+  user_data              = base64encode(templatefile("${path.module}/bootstrap.tftpl", {})) 
 
   tags = {
-    Name = var.igw_name
+    Name = var.ec2_name
   }
-}
 
-resource "aws_route_table" "route_table" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name = "Default Route Table"
+  root_block_device {
+    volume_size = 150
   }
-}
-
-resource "aws_route" "default_route" {
-  route_table_id         = aws_route_table.route_table.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.igw.id
-}
-
-resource "aws_route_table_association" "route_table_association" {
-  subnet_id      = aws_subnet.subnet.id
-  route_table_id = aws_route_table.route_table.id
-}
-resource "aws_eip" "eip" {
-  instance = aws_instance.ec2_instance.id
 }
