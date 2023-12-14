@@ -1,5 +1,71 @@
 # Documentation
 
+## Terraform Modules
+All modules can be found within [modules](./aws/modules) folder.
+Below are examples on how the modules can be integrated into exisitng terraform deployments.
+
+- SAPRouter
+```terraform
+module "saprouter" {
+  source = "./modules/saprouter"
+
+  security_group_name = var.srt-security_group_name
+  routtab-file-url    = var.routtab-file-url
+  ec2_name            = var.saprouter_ec2_name
+  vpc-id              = aws_vpc.vpc.id
+  keypair-id          = aws_key_pair.key_pair.id
+  subnet-id           = aws_subnet.subnet.id
+}
+
+# Output
+output "saprouter_private_ip" {
+  description = "SAPRouter Instance Private IP"
+  value = module.saprouter.private_ip
+}
+```
+
+- SAP Cloud Connector
+```terraform
+module "sapcloudconnector" {
+  source = "./modules/sap-cloud-connector"
+
+  security_group_name = var.scc-security_group_name
+  ec2_name            = var.sapcloudconnector_ec2_name
+  vpc-id              = aws_vpc.vpc.id
+  keypair-id          = aws_key_pair.key_pair.id
+  subnet-id           = aws_subnet.subnet.id
+  cloud-connector-version         = var.cloud-connector-version
+  jvm-version         = var.jvm-version
+}
+
+# Output
+output "sapcloudconnector_private_ip" {
+  description = "SAP Cloud Connector Instance Private IP"
+  value = module.sapcloudconnector.private_ip
+}
+```
+
+- SAP S/4HANA 1909 (ABAP Platform Trial)
+```terraform
+module "sap-s4hana" {
+  source = "./modules/s4-hana"
+
+  security_group_name = var.s4_hana_security_group_name
+  ec2_name            = var.s4_hana_ec2_name
+  vpc-id              = aws_vpc.vpc.id
+  keypair-id          = aws_key_pair.key_pair.id
+  subnet-id           = aws_subnet.subnet.id
+}
+
+# Output
+output "sapcloudconnector_private_ip" {
+  description = "SAP S/4HANA Instance Private IP"
+  value = module.sap-s4hana.private_ip
+}
+```
+
+Within the [aws](./aws) folder you can find a example terraform deployment which includes all three modules.
+
 ## SAP Cloud Connector
 
 This terraform deployment will setup a OpenSUSE Leap AWS EC2 Instance will allows to run an SAP Cloud Connector. 
@@ -12,9 +78,9 @@ This terraform deployment will setup a OpenSUSE Leap AWS EC2 Instance will allow
 
 ### Deploment
 
-- Switch into the `./cloud-connector/` folder
+- Add the correpsonding module to your existing terraform code.
 
-- Adjust the variables as needed (e.g. update AWS credentials profile name, region,Cloud Connector version, SAP JWM version, etc)
+- Adjust the variables as needed (e.g. update Cloud Connector version, SAP JWM version, etc)
 
 - Initialize terraform
 
@@ -49,9 +115,9 @@ This terraform deployment will setup a OpenSUSE Leap AWS EC2 Instance will allow
 
 ### Deploment
 
-- Switch into the `./saprouter/` folder
+- Add the correpsonding module to your existing terraform code.
 
-- Adjust the variables as needed (e.g. update AWS credentials profile name, region, saprouttab, etc)
+- Adjust the variables as needed (e.g. update saprouttab, etc)
 
 - Initialize terraform
 
@@ -101,9 +167,9 @@ This terraform deployment will setup the SAP ABAP Platform Trial container on a 
 
 ### Deploment
 
-- Switch into the `./s4-hana/` folder
+- Add the correpsonding module to your existing terraform code.
 
-- Adjust the variables as needed (e.g. update AWS credentials profile name, region, etc)
+- Adjust the variables as needed.
 
 - Initialize terraform
 

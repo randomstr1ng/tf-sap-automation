@@ -23,3 +23,13 @@ output "sapcloudconnector_private_ip" {
   description = "SAP Cloud Connector Instance Private IP"
   value = module.sapcloudconnector.private_ip
 }
+
+output "sapcloudconnector_pulic_ip" {
+  description = "SAP S/4HANA Instance Public IP"
+  value = aws_eip.sap-s4hana_eip.public_ip
+}
+
+output "sapcloudconnector_private_ip" {
+  description = "SAP S/4HANA Instance Private IP"
+  value = module.sap-s4hana.private_ip
+}
