@@ -11,7 +11,7 @@ resource "aws_key_pair" "key_pair" {
 
 # Create SAPRouter
 module "saprouter" {
-  source = "./modules/saprouter"
+  source = "../aws-modules/saprouter"
 
   security_group_name = var.srt-security_group_name
   routtab-file-url    = var.routtab-file-url
@@ -26,7 +26,7 @@ resource "aws_eip" "saprouter_eip" {
 
 # Create SAP Cloud Connector
 module "sapcloudconnector" {
-  source = "./modules/sap-cloud-connector"
+  source = "../aws-modules/sap-cloud-connector"
 
   security_group_name = var.scc-security_group_name
   ec2_name            = var.sapcloudconnector_ec2_name
@@ -42,7 +42,7 @@ resource "aws_eip" "sapcloudconnector_eip" {
 
 # Create SAP S4/HANA 1909 ABAP Platform Trial
 module "sap-s4hana" {
-  source = "./modules/s4-hana"
+  source = "../aws-modules/s4-hana"
 
   security_group_name = var.s4_hana_security_group_name
   ec2_name            = var.s4_hana_ec2_name
