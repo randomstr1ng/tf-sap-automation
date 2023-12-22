@@ -20,9 +20,11 @@ fs.aio-max-nr=18446744073709551615
 fs.file-max=20000000
 EOF
 sudo sysctl -p /etc/sysctl.d/10-abaptrial.conf
-echo "--- Placeholder ---" | sudo tee -a /opt/s4-hana-trial/ASABAP_license
-echo "--- Placeholder ---" | sudo tee -a /opt/s4-hana-trial/HDB_license
-sudo mkdir -p /opt/s4-hana-trial/ && wget https://github.com/randomstr1ng/tf-sap-automation/tree/main/deployment-files/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
+sudo mkdir -p /opt/s4-hana-trial/
+sudo chown -R ubuntu:ubuntu /opt/s4-hana-trial/
+wget https://github.com/randomstr1ng/tf-sap-automation/tree/main/deployment-files/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
+echo "--- Placeholder ---" | tee -a /opt/s4-hana-trial/ASABAP_license
+echo "--- Placeholder ---" | tee -a /opt/s4-hana-trial/HDB_license
 sudo docker compose -f /opt/s4-hana-trial/docker-compose.yaml up -d
 # transfer license update script
 pip3 install argparse
