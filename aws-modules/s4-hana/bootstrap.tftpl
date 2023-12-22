@@ -22,10 +22,11 @@ EOF
 sudo sysctl -p /etc/sysctl.d/10-abaptrial.conf
 sudo mkdir -p /opt/s4-hana-trial/
 sudo chown -R ubuntu:ubuntu /opt/s4-hana-trial/
-wget https://github.com/randomstr1ng/tf-sap-automation/tree/main/deployment-files/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
+wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/deployment-files/docker-compose.yaml -O /opt/s4-hana-trial/docker-compose.yaml
 echo "--- Placeholder ---" | tee -a /opt/s4-hana-trial/ASABAP_license
 echo "--- Placeholder ---" | tee -a /opt/s4-hana-trial/HDB_license
 sudo docker compose -f /opt/s4-hana-trial/docker-compose.yaml up -d
 # transfer license update script
 pip3 install argparse
-wget https://github.com/randomstr1ng/tf-sap-automation/tree/main/deployment-files/license-sap.py -O /opt/s4-hana-trial/license-sap.py && chmod +x /opt/s4-hana-trial/license-sap.py
+wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/deployment-files/license-sap.py -O /opt/s4-hana-trial/license-sap.py
+chmod +x /opt/s4-hana-trial/license-sap.py
