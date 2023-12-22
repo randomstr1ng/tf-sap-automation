@@ -237,4 +237,4 @@ sudo docker logs -f a4h
 
 ![image-20231206140533510](./assets/image-20231206140533510.png)
 
-- Login via SAP GUI using the Username `Developer` and the Password: `Htods70334`. (More Information: [Dockerhub Page](https://hub.docker.com/r/sapse/abap-platform-trial))
+- Login via SAP GUI using the Username `Developer` and the Password: `ABAPtr1909`. (More Information: [Dockerhub Page](https://hub.docker.com/r/sapse/abap-platform-trial))
