@@ -34,7 +34,7 @@ data "aws_ami" "opensuse-leap" {
 
   filter {
     name   = "name"
-    values = ["openSUSE-Leap-15-4-*"]
+    values = ["openSUSE-Leap-15-*"]
   }
 
   filter {

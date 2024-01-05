@@ -7,8 +7,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get -qy install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # Setup SAP S/4 HANA 1909 Trial
@@ -30,3 +29,8 @@ sudo docker compose -f /opt/s4-hana-trial/docker-compose.yaml up -d
 pip3 install argparse
 wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/deployment-files/license-sap.py -O /opt/s4-hana-trial/license-sap.py
 chmod +x /opt/s4-hana-trial/license-sap.py
+# license automation
+pip3 install docker
+wget https://raw.githubusercontent.com/randomstr1ng/tf-sap-automation/main/deployment-files/license-automation.py -O /opt/s4-hana-trial/license-automation.py
+chmod +x /opt/s4-hana-trial/license-automation.py
+# python3 /opt/s4-hana-trial/license-automation.py

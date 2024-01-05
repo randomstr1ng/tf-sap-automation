@@ -68,7 +68,7 @@ variable "cloud-connector-version" {
 
 variable "jvm-version" {
   type    = string
-  default = "	8.1.096" 
+  default = "8.1.096" 
 }
 
 # S4/HANA Module variables
