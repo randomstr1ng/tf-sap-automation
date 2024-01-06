@@ -1,4 +1,4 @@
-name: s4-hana-trial-1909SP09
+name: s4-hana-trial
 services:
     abap-platform-trial:
         stop_grace_period: 3600s
