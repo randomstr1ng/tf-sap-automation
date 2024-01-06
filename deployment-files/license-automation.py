@@ -6,6 +6,7 @@ URL = 'https://go.support.sap.com/minisap/odata/bkey/minisap/'
 LIC_PATH_HDB = "/opt/s4-hana-trial/HDB_license"
 LIC_PATH_A4H = "/opt/s4-hana-trial/ASABAP_license"
 LIC_PROGRESS = 0
+DEBUG = True
 
 def write_license(path, content):
         f = open(path, "w")
@@ -35,15 +36,15 @@ def a4h_license(hwkey):
         write_license(path=LIC_PATH_A4H, content=response["d"]["Licensekey"])
         print("[*] A4H license updated successfully")
 
-client = docker.from_env()
-container = client.containers.get("a4h")
-hdb_hardware_key = re.findall(r"HDB.*([A-Z0-9]{11})", container.logs().decode())
-a4h_hardware_key = re.findall(r":.([A-Z0-9]{11}).*\(", container.logs().decode())
-
 while True:
-        print(f"[DEBUG] HDB keys: {len(hdb_hardware_key)}")
-        print(f"[DEBUG] A4H keys: {len(a4h_hardware_key)}")
-        print(f"[DEBUG] Stage: {LIC_PROGRESS}")
+        client = docker.from_env()
+        container = client.containers.get("a4h")
+        hdb_hardware_key = re.findall(r"HDB.*([A-Z0-9]{11})", container.logs().decode())
+        a4h_hardware_key = re.findall(r":.([A-Z0-9]{11}).*\(", container.logs().decode())
+        if DEBUG:
+                print(f"[DEBUG] HDB keys: {len(hdb_hardware_key)}")
+                print(f"[DEBUG] A4H keys: {len(a4h_hardware_key)}")
+                print(f"[DEBUG] Stage: {LIC_PROGRESS}")
         if len(a4h_hardware_key) <= 0 and len(hdb_hardware_key) == 1 and LIC_PROGRESS == 0:
                 print(f"[*] HDB HW Key: {hdb_hardware_key[-1]}")
                 hdb_license(hdb_hardware_key[-1])
