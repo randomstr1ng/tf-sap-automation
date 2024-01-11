@@ -1,3 +1,6 @@
 [submodule "aws-modules/saprouter"]
 	path = aws-modules/saprouter
 	url = git@github.com:randomstr1ng/tf-aws-saprouter.git
+[submodule "aws-modules/sap-cloud-connector"]
+	path = aws-modules/sap-cloud-connector
+	url = git@github.com:randomstr1ng/tf-aws-sap-cloud-connector.git
