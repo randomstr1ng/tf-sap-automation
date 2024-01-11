@@ -1,0 +1,3 @@
+[submodule "aws-modules/saprouter"]
+	path = aws-modules/saprouter
+	url = git@github.com:randomstr1ng/tf-aws-saprouter.git
