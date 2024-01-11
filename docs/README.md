@@ -1,5 +1,11 @@
 # Documentation
 
+To get started clone the example repository by using the following command:
+```bash
+git clone --recursive https://github.com/randomstr1ng/tf-sap-automation.git
+```
+This will include the different modules.
+
 ## Terraform Modules
 All modules can be found within [modules](./aws/modules) folder.
 Below are examples on how the modules can be integrated into exisitng terraform deployments.
