@@ -4,3 +4,6 @@
 [submodule "aws-modules/sap-cloud-connector"]
 	path = aws-modules/sap-cloud-connector
 	url = git@github.com:randomstr1ng/tf-aws-sap-cloud-connector.git
+[submodule "aws-modules/s4-hana"]
+	path = aws-modules/s4-hana
+	url = git@github.com:randomstr1ng/tf-aws-sap-s4-hana.git
