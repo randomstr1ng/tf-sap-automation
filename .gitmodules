@@ -1,9 +1,12 @@
 [submodule "aws-modules/saprouter"]
 	path = aws-modules/saprouter
 	url = https://github.com/randomstr1ng/tf-aws-saprouter.git
+	branch = main
 [submodule "aws-modules/sap-cloud-connector"]
 	path = aws-modules/sap-cloud-connector
 	url = https://github.com/randomstr1ng/tf-aws-sap-cloud-connector.git
+	branch = main
 [submodule "aws-modules/s4-hana"]
 	path = aws-modules/s4-hana
 	url = https://github.com/randomstr1ng/tf-aws-sap-s4-hana.git
+	branch = main
